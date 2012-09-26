@@ -21,33 +21,33 @@
 			  score = score + 5;
 			  North = false;
 			}
-			var msg="You begin by heading north, there's quick sand in front of you, using your crazy skills you were able to get around it by swinging on a vine.";
+			var msg="You begin by heading north, there's quick sand in front of you, using your crazy jungle skills you were able to get around it by swinging on a vine. Who knew that you had it in you?";
 			UpdateText(msg);
 		}
 		function btn_east_click() {
 			if(East) {
-			  score = score + 5;
+			  score = score + 5
 			  East = false;
 			}
 			var msg="You head east, you notice that there's a large rock blocking your path, you tried climbing it but failed. It shows that you are dead. Poor you.";
 			UpdateText(msg); 
-        }
+    }
 		function btn_south_click() {
 			if(South) {
 			  score = score + 5;
 			  South = false;
  			}
-			var msg="This time you start by heading south, there's a broken bridge blocking your path, but with your amazing skills and reflexes you are able to make it across. That psychotic gorilla has no chance of getting to you.";
+			var msg="This time you start by heading south, there's a broken bridge blocking your path, but with your amazing skills and reflexes you are able to make your way across. That psychotic gorilla has no chance of getting to you. Yea!!!!";
 			UpdateText(msg);
-        }
+    }
 		function btn_west_click() {
 			if(West) {
 			  score = score + 5;
 			  West = false;
 			}
-			var msg="You head west, this time what now!!, it appears that there's a giant hole just sitting there waiting for you, your attempt of jumping that mother of hell cost you your life. Sure yea, you died so what at least you didn't get your soul forced into hell by that maniac.";
+			var msg="You head west, this time what now!!!, it appears that there's a giant hole just sitting there waiting for you, your attempt of jumping that mother of hell cost you your life. Sure yea, you died so what at least you didn't get your soul forced into hell by that maniac.";
 			UpdateText(msg); 
-        }
+    }
 		function UpdateText(msg) {
 			var nice = document.getElementById("kevin");
 			nice.value = msg +"\n"+"\n"+ nice.value;
@@ -59,7 +59,7 @@
       <h1>Kevin Bruce</h1>																							                                                                                           
       <h2>September 26, 2012</h2>
       <h3>Introduction to Programming</h3>								
-      <h4>Project 2 - Escape Or Die!!</h4>
+      <h4>Project 2 - Escape Or Die!!!</h4>
 
     <textarea  id="kevin" rows="10" cols="40">
 Welcome. Its appears that you are in a jungle where you begin the game with a psychotic demonized gorilla, obsessively running after you trying to eliminate your soul. Since you are afraid to die you decide to a run for your life. "All you have to do, is try and stay alive as long as possible." Good luck!!!!   
@@ -85,9 +85,9 @@ Welcome. Its appears that you are in a jungle where you begin the game with a ps
              onclick="btn_west_click();">
 	    <br>
       <br>
-    	<input type="button"
-               value="Score Board"
-               onclick="alert(score);">
+     <input type="button"
+             value="Score Board"
+             onclick="alert(score);">
 	
     <p class="bottom">
       <a href="mailto:Kevin.Bruce1@marist.edu">Email Link</a>
