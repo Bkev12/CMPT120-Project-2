@@ -1,10 +1,12 @@
 <!DOCTYPE HTML>
  <html>
    <head>
-     <style>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="author" content="Chris D. Student" />
+    <title>My Game Version 0.2</title>
+    <style>
         body {background-color:Red;}
         h1{font-weight:bold; color:Green;}
-        .Boss {font-style:italic; font-weight:bold;}
       </style>
       <script>
  
@@ -14,50 +16,42 @@
 		var West = true;
 		var score = 0;
 
-		//alert('You took the north entrance, you took a dive through a loope hole, crawl under spicky sharp metal things, and jumped over boxs whih earning you a right to move on to the next the level.');"
-		//'You took the south entrance, unfortunately, you reflexes weren't good enough  to trip over a box and now your dead.'
-		//'You turn West, .'
-		//'You turn East, .'
-
-
 		function btn_north_click() {
 			if(North) {
 			  score = score + 5;
-			  alert(score);
 			  North = false;
-			}else{
-			  alert(score);
-	       }
-        }
-
+			}
+			var msg="You begin by heading north, there's quick sand in front of you, using your crazy skills you were able to get around it by swinging on a vine.";
+			UpdateText(msg);
+		}
 		function btn_east_click() {
 			if(East) {
 			  score = score + 5;
-			  alert(score);
 			  East = false;
-			}else{
-			  alert(score);
-	       }
+			}
+			var msg="You head east, you notice that there's a large rock blocking your path, you tried climbing it but failed. It shows that you are dead. Poor you.";
+			UpdateText(msg); 
         }
 		function btn_south_click() {
 			if(South) {
 			  score = score + 5;
-			  alert(score);
 			  South = false;
-			}else{
-			  alert(score);
-	       }
+ 			}
+			var msg="This time you start by heading south, there's a broken bridge blocking your path, but with your amazing skills and reflexes you are able to make it across. That psychotic gorilla has no chance of getting to you.";
+			UpdateText(msg);
         }
 		function btn_west_click() {
 			if(West) {
 			  score = score + 5;
-			  alert(score);
 			  West = false;
-			}else{
-			  alert(score);
-	       }
+			}
+			var msg="You head west, this time what now!!, it appears that there's a giant hole just sitting there waiting for you, your attempt of jumping that mother of hell cost you your life. Sure yea, you died so what at least you didn't get your soul forced into hell by that maniac.";
+			UpdateText(msg); 
         }
-		
+		function UpdateText(msg) {
+			var nice = document.getElementById("kevin");
+			nice.value = msg +"\n"+"\n"+ nice.value;
+		  }
       </script>
      </head>
    
@@ -65,31 +59,32 @@
       <h1>Kevin Bruce</h1>																							                                                                                           
       <h2>September 26, 2012</h2>
       <h3>Introduction to Programming</h3>								
-      <h4>Project 2 - Escape kill</h4>
+      <h4>Project 2 - Escape Or Die!!</h4>
 
-   <textarea>
-Welcome to Escape Kill. You appear at an unfamiliar place where you begin the game with a psycothic mad man named Killer strick, obsessively running after you and trying to eliminate your soul. Since you afraid to die you to a run for it. "All you have to do, is to try and stay alive as long as possible, with obstacles coming your way as you make your greatest escape in gaming history. Before you start the game your given a choice to pick an entrance sicne there are four of them.  
-   </textarea>
+    <textarea  id="kevin" rows="10" cols="40">
+Welcome. Its appears that you are in a jungle where you begin the game with a psychotic demonized gorilla, obsessively running after you trying to eliminate your soul. Since you are afraid to die you decide to a run for your life. "All you have to do, is try and stay alive as long as possible." Good luck!!!!   
+    </textarea>
 
 	<br>
 	<br>
-
 
      <input type="button"
              value="North"
              onclick="btn_north_click();">
-
+			 
      <input type="button"
              value="East"
              onclick="btn_east_click();">
+			 
      <input type="button"
              value="South"
              onclick="btn_south_click();">
+			 
      <input type="button"
              value="West"
              onclick="btn_west_click();">
-	<br>
-        <br>
+	    <br>
+      <br>
     	<input type="button"
                value="Score Board"
                onclick="alert(score);">
@@ -98,32 +93,21 @@ Welcome to Escape Kill. You appear at an unfamiliar place where you begin the ga
       <a href="mailto:Kevin.Bruce1@marist.edu">Email Link</a>
     <p>
  
-     <p>
-	<label>Rate this game:
-	   <select name = "rating">
-	      <option>Terrible</option>
-	      <option>2</option>
-	      <option>3</option>
-	      <option>4</option>
-	      <option>5</option>
-	      <option>6</option>
-	      <option>7</option>
-	      <option>8</option>
-	      <option>9</option>
-	      <option>Awesome</option>
-	  </select>
-       </label>   						
+    <p>
+     <label>Rate this game:
+        <select name = "rating">
+            <option>Terrible</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+          <option>Awesome</option>
+        </select>
+     </label>   						
     </p>
-	
    </body>
- 
  </html>	
-
-
-
-
-
-
-
-
-
