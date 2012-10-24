@@ -1,197 +1,194 @@
 <!DOCTYPE HTML>
  <html>
+   <!-- Kevin Bruce
+        Introduction to Programming
+        Project 3 - My Updated Version of Project 2 -->
    <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="author" content="Chris D. Student" />
-    <title>My Game Version 0.2</title>
-    <style>
-        body {background-color:Red;}
-        h1{font-weight:bold; color:Green;}
-    </style>
-    <script>
-    //north
-		var jungle1=true;
-		//East
-		var jungle2=true;
-		//South
-		var jungle3=true;  
-		//West
-		var jungle4=true; 
-		var jungle5=true;
-		var score = 0;
-    var locale  = 0;
-    
-    
-    function movenorth() {
-      if(locale===0) {
-         locale=1;
-         jungleone();
-         document.getElementById("button_north").disabled=true;
-         document.getElementById("button_west").disabled=true; 
-         document.getElementById("button_east").disabled=true;   
-       }
-         else if(locale===3) {
-         locale=0;
-         junglezero();    
-         document.getElementById("button_north").disabled=false;
-         document.getElementById("button_west").disabled=false;
-         document.getElementById("button_east").disabled=false;
-         document.getElementById("button_south").disabled=false;
-       }    
-         else if(locale===5)  {
-         locale=3;
-         junglethree();
-         document.getElementById("button_south").disabled=false;
-         document.getElementById("button_west").disabled=true;
-         document.getElementById("button_east").disabled=true;
-       }
-    }
-         
-     function moveeast() {
-       if(locale===0) {
-          locale=2;
-          jungletwo();
-          document.getElementById("button_north").disabled=true;
-          document.getElementById("button_east").disabled=true;
-          document.getElementById("button_south").disabled=true;
-       }
-          else if(locale===4) {
-          locale=0;
-          junglezero();
-          document.getElementById("button_north").disabled=false;
-          document.getElementById("button_south").disabled=false;
-          document.getElementById("button_east").disabled=false;
-          document.getElementById("button_west").disabled=false;
-      }
-    }
-             
-     function movewest() {
-        if(locale===0) {
-           locale=4;
-           junglefour();
-           document.getElementById("button_north").disabled=true;
-           document.getElementById("button_west").disabled=true;
-           document.getElementById("button_south").disabled=true;
-     }  
-           else if(locale===2) {
-           locale=0;
-           jungle();
-           document.getElementById("button_north").disabled=false;
-           document.getElementById("button_south").disabled=false;
-           document.getElementById("button_east").disabled=false;
-           document.getElementById("button_west").disabled=false;
-     }
-   }
-     
-     function movesouth() {
-         if(locale===0) {
-         locale=3;
-         junglethree();
-         document.getElementById("button_east").disabled=true;
-         document.getElementById("button_west").disabled=true;
-      }
-         else if(locale===3) {
-         locale=5;
-         junglefive();
-         document.getElementById("button_south").disabled=true;
-         document.getElementById("button_east").disabled=true;
-         document.getElementById("button_west").disabled=true;
-      }
-         else if(locale===1) {
-         locale=0;
-         junglezero();
-         document.getElementById("button_north").disabled=false;
-         document.getElementById("button_south").disabled=false;
-         document.getElementById("button_east").disabled=false;
-         document.getElementById("button_west").disabled=false;
-      }
-    }
-       
-    
-      
-         
-     function junglezero() {
-      var msg="You are back in the center of the jungle";
-      UpdateText(msg);
-     }
-    
-    //North of your direction
-		function jungleone() { 
-			if(jungle1) {
-			  score = score + 5;
-			  North = false;
-			}
-			var msg="There's a quick sand in front of you, using your crazy jungle skills you were able to get around it by swinging on a vine. Who knew that you had it in you?";
-			UpdateText(msg);
-		}
-		
-		//East of your direction
-		function jungletwo() {
-			if(jungle2) {
-			  score = score + 5
-			  East = false;
-			}
-			var msg="You notice that there's a large rock blocking your path, you tried climbing it but failed. It shows that you are dead. Poor you.";
-			UpdateText(msg); 
-    }
-    
-    //South of your direction
-		function junglethree() {
-			if(jungle3) {
-			  score = score + 5;
-			  South = false;
- 			}
-			var msg="There's a broken bridge blocking your path, but with your amazing skills and reflexes you are able to make your way across. That psychotic gorilla has no chance of getting to you. Yea!!!!";
-			UpdateText(msg);
-    }
-    
-    //West of your direction
-		function junglefour() {
-			 if(jungle4) {
-			  score = score + 5;
-			  West = false;
-			}
-			var msg="What now!!!, it appears that there's a giant hole just sitting there waiting for you, your attempt of jumping that mother of hell cost you your life. Sure yea, you died so what at least you didn't get your soul forced into hell by that maniac.";
-			UpdateText(msg); 
-    }
-    
-		function junglefive() {
-			 if(jungle5) {
-			  score = score + 5;
-			  West = false;
-			}
-			var msg="It appears that there's a giant hole just sitting there waiting for you, your attempt of jumping that mother of hell cost you your life. Sure yea, you died so what at least you didn't get your soul forced into hell by that maniac.";
-			UpdateText(msg); 
-    }
-    
-     
-    function btn_go_click() {
-       var userInput=document.getElementById("theman").value;
-       if(userInput === "n" || userInput === "N") {
-            movenorth();
-       }  else if (userInput === "e" || userInput === "E") {
-            moveeast();
-       }  else if (userInput === "s" || userInput === "S") {
-            movesouth();
-       }  else if (userInput === "w" || userInput === "W") {
-            movewest();
-       }
-    }
-    
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <meta name="author" content="Chris D. Student" />
+      <title>My Game Version 0.2</title>
+     <style>
+       body {background-color:Red;}
+       h1{font-weight:bold; color:Green;}
+     </style>
+     <script>
+     //north
+		 var jungle1=true;
+		 //East
+   	 var jungle2=true;
+		 //South
+	   var jungle3=true;  
+		 //West
+		 var jungle4=true; 
+	   var jungle5=true;
+	   var score = 0;
+     var locale  = 0;
 
-		function UpdateText(msg) {
-			var nice = document.getElementById("kevin");
-			nice.value = msg +"\n"+"\n"+ nice.value;
-		}
+        function movenorth() {
+           if (locale===0) {
+              locale=1;
+              jungleone();
+              document.getElementById("button_north").disabled=true;
+              document.getElementById("button_west").disabled=true; 
+              document.getElementById("button_east").disabled=true;   
+           }  
+           else if (locale===3) {
+              locale=0;
+              junglezero();    
+              document.getElementById("button_north").disabled=false;
+              document.getElementById("button_west").disabled=false;
+              document.getElementById("button_east").disabled=false;
+              document.getElementById("button_south").disabled=false;
+           }  
+           else if (locale===5)  {
+              locale=3;
+              junglethree();
+              document.getElementById("button_south").disabled=false;
+              document.getElementById("button_west").disabled=true;
+              document.getElementById("button_east").disabled=true;
+           }
+        } 
+         
+        function moveeast() {
+           if (locale===0) {
+              locale=2;
+              jungletwo();
+              document.getElementById("button_north").disabled=true;
+              document.getElementById("button_east").disabled=true;
+              document.getElementById("button_south").disabled=true;
+           }  
+           else if (locale===4) {
+              locale=0;
+              junglezero();
+              document.getElementById("button_north").disabled=false;
+              document.getElementById("button_south").disabled=false;
+              document.getElementById("button_east").disabled=false;
+              document.getElementById("button_west").disabled=false;
+           }
+        }
+             
+        function movewest() {
+           if (locale===0) {
+              locale=4;
+              junglefour();
+              document.getElementById("button_north").disabled=true;
+              document.getElementById("button_west").disabled=true;
+              document.getElementById("button_south").disabled=true;
+           } 
+           else if (locale===2) {
+              locale=0;
+              jungle();
+              document.getElementById("button_north").disabled=false;
+              document.getElementById("button_south").disabled=false;
+              document.getElementById("button_east").disabled=false;
+              document.getElementById("button_west").disabled=false;
+           }
+        }
+        
+        function movesouth() {
+           if (locale===0) {
+              locale=3;
+              junglethree();
+              document.getElementById("button_east").disabled=true;
+              document.getElementById("button_west").disabled=true;
+           }
+           else if (locale===3) {
+              locale=5;
+              junglefive();
+              document.getElementById("button_south").disabled=true;
+              document.getElementById("button_east").disabled=true;
+              document.getElementById("button_west").disabled=true;
+           } 
+           else if (locale===1) {
+              locale=0;
+              junglezero();
+              document.getElementById("button_north").disabled=false;
+              document.getElementById("button_south").disabled=false;
+              document.getElementById("button_east").disabled=false;
+              document.getElementById("button_west").disabled=false;
+           }
+        }
+         
+        function junglezero() {
+           var msg="You are back in the center of the jungle";
+           UpdateText(msg);
+        }
+       
+        //North of your direction
+		    function jungleone() { 
+           if (jungle1) {
+			        score = score + 5;
+			        North = false;
+	         } 	      
+	         var msg="There's a quick sand in front of you, using your crazy jungle skills you were able to get around it by swinging on a vine. Who knew that you had it in you?";
+			        UpdateText(msg);
+	      }
+		
+		    //East of your direction
+		    function jungletwo() {
+			     if (jungle2) {
+			        score = score + 5
+			        East = false;
+		       } 
+		       var msg="You notice that there's a large rock blocking your path, you tried climbing it but failed. It shows that you are dead. Poor you.";
+			        UpdateText(msg); 
+        }
+     
+        //South of your direction
+	    	function junglethree() {
+		       if (jungle3) {
+			        score = score + 5;
+			        South = false;
+ 			     } 
+ 			     var msg="There's a broken bridge blocking your path, but with your amazing skills and reflexes you are able to make your way across. That psychotic gorilla has no chance of getting to you. Yea!!!!";
+			        UpdateText(msg);
+        }
+    
+        //West of your direction
+		    function junglefour() {
+			     if (jungle4) {
+			        score = score + 5;
+			        West = false;
+			     } 
+			     var msg="What now!!!, it appears that there's a giant hole just sitting there waiting for you, your attempt of jumping that mother of hell cost you your life. Sure yea, you died so what at least you didn't get your soul forced into hell by that maniac.";
+		          UpdateText(msg); 
+        }
+        
+		    function junglefive() {
+			     if (jungle5) {
+			        score = score + 5;
+			        West = false;
+			     } 
+			     var msg="It appears that there's a giant hole just sitting there waiting for you, your attempt of jumping that mother of hell cost you your life. Sure yea, you died so what at least you didn't get your soul forced into hell by that maniac.";
+			        UpdateText(msg); 
+        }
+
+        function btn_go_click() {
+           var userInput=document.getElementById("theman").value;
+           if (userInput === "n" || userInput === "N") {
+                movenorth();
+           } else if (userInput === "e" || userInput === "E") {
+                moveeast();
+           } else if (userInput === "s" || userInput === "S") {
+                movesouth();
+           } else if (userInput === "w" || userInput === "W") {
+                movewest();
+           }
+        }
+
+		    function UpdateText(msg) {
+			     var nice = document.getElementById("kevin");
+			     nice.value = msg +"\n"+"\n"+ nice.value;
+		    }
 
       </script>
      </head>
    
     <body>
       <h1>Kevin Bruce</h1>																							                                                                                           
-      <h2>September 26, 2012</h2>
+      <h2>October 24, 2012</h2>
       <h3>Introduction to Programming</h3>								
-      <h4>Project 2 - Escape Or Die!!!</h4>
+      <h4>Project 3 - Escape Or Die!!!</h4>
 
     <textarea  id="kevin" rows="10" cols="40">
 Welcome. Its appears that you are in a jungle where you begin the game with a psychotic demonized gorilla, obsessively running after you trying to eliminate your soul. Since you are afraid to die you decide to make a run for it. "All you have to do, is try and stay alive as long as possible." Good luck!!!!   
@@ -207,29 +204,29 @@ Welcome. Its appears that you are in a jungle where you begin the game with a ps
      <br>
      <br>
      <input type="button"
-             value="North"
-             id="button_north"
-             onclick="movenorth();">
+            value="North"
+            id="button_north"
+            onclick="movenorth();">
      
      <input type="button"    
-             value="East"
-             id="button_east"
-             onclick="moveeast();">
+            value="East"
+            id="button_east"
+            onclick="moveeast();">
 			 
      <input type="button"
-             value="South"
-             id="button_south"
-             onclick="movesouth();">
+            value="South"
+            id="button_south"
+            onclick="movesouth();">
 			 
      <input type="button"
-             value="West"
-             id="button_west"
-             onclick="movewest();">
+            value="West"
+            id="button_west"
+            onclick="movewest();">
      <br>
      <br>
      <input type="button"
-             value="Score Board"
-             onclick="alert(score);">
+            value="Score Board"
+            onclick="alert(score);">
 	
     <p class="bottom">
       <a href="mailto:Kevin.Bruce1@marist.edu">Email Link</a>
