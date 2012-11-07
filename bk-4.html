@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+ <html>
+   <!-- Kevin Bruce
+        November 7, 2012
+        Introduction to Programming
+        Project 4 - My Updated Version of Project 3 -->
+   <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <meta name="author" content="Kevin Bruce" />
+      <title>My Game Version 0.2</title>
+     <style>
+       body {background-color:Red;}
+       h1{font-weight:bold; color:Green;}
+     </style>
+     <script type="text/Javascript" src="locations.js"></script>
+     <script type="text/Javascript" src="inventory.js"></script>
+     <script>
+     //north
+		 var quicksandpath1=true;
+		 //East
+   	 var largerockpath2=true;
+		 //South
+	   var brokenbridgepath3=true;  
+		 //West
+		 var giantholepath4=true; 
+	   var hutpath5=true;
+	   var cavepath6=true;
+	   var cavepath7=true;
+	   var cavepath8=true;
+	   var junglepath9=true;
+	   var riverpath10=true;
+	   var btnNorth=document.getElementById("button_north");  
+	   var btnSouth=document.getElementById("button_south");
+	   var btnWest=document.getElementById("button_west");
+	   var btnEast=document.getElementById("button_east");
+	   var score = 0;
+     var locale  = 0;
+     
+        function UpdateDirection() {
+          switch (locale) {
+            case 0:   
+              btnNorth.disabled=false;
+              btnSouth.disabled=false;
+              btnWest.disabled=false;
+              btnEast.disabled=false;
+            case 1:
+              btnNorth.disabled=true;
+              btnSouth.disabled=false;
+              btnWest.disabled=true;
+              btnEast.disabled=true;
+            case 2:             
+              btnNorth.disabled=true;
+              btnSouth.disabled=true;
+              btnWest.disabled=false;
+              btnEast.disabled=true;
+            case 3:              
+              btnNorth.disabled=false;
+              btnSouth.disabled=false;
+              btnWest.disabled=true;
+              btnEast.disabled=true;
+            case 4:             
+              btnNorth.disabled=true;
+              btnSouth.disabled=true;
+              btnWest.disabled=true;
+              btnEast.disabled=false;
+            case 5:              
+              btnNorth.disabled=false;
+              btnSouth.disabled=false;
+              btnWest.disabled=false;
+              btnEast.disabled=false;
+            case 6:             
+              btnNorth.disabled=true;
+              btnSouth.disabled=false;
+              btnWest.disabled=true;
+              btnEast.disabled=false;
+            case 7:             
+              btnNorth.disabled=true;
+              btnSouth.disabled=false;
+              btnWest.disabled=false;
+              btnEast.disabled=true;
+            case 8:              
+              btnNorth.disabled=false;
+              btnSouth.disabled=true;
+              btnWest.disabled=true;
+              btnEast.disabled=false;
+            case 9:              
+              btnNorth.disabled=false;
+              btnSouth.disabled=true;
+              btnWest.disabled=false;
+              btnEast.disabled=false;
+            case 10:              
+              btnNorth.disabled=false;
+              btnSouth.disabled=true;
+              btnWest.disabled=false;
+              btnEast.disabled=true;
+            default:
+              btnNorth.disabled=true;
+              btnSouth.disabled=true;
+              btnWest.disabled=true;
+              btnEast.disabled=true;
+          }
+        }            
+            
+
+        function gameinit() {
+          UpdateText("After you were separated from your lads, "+
+                    "you find your self being chased by a psychotic demonized gorilla, "+
+                    "you end up lost in the jungle "+
+                    "with four paths leading in cardinal directions to no where. ");  
+
+        }
+        function movenorth() {
+          switch (locale) {
+             case 0:
+              locale=1;
+              quicksandpathone();
+              UpdateDirection();  
+              break;
+             case3:
+              locale=0;
+              startinglocationzero();    
+              UpdateDirection();
+              break;
+             case 5:
+              locale=3;
+              brokenbridgepaththree();
+              UpdateDirection();
+              break;
+             case 9:
+              locale=5;
+              hutpathfive();    
+              UpdateDirection();
+              break;
+             case 8:
+              locale=6;
+              cavepathsix();    
+              UpdateDirection();
+              break;
+             case 10:
+              locale=7;
+              cavepathseven();    
+              UpdateDirection();
+              break;
+           }
+        } 
+         
+        function moveeast() {
+          switch (locale) {
+             case 0:
+              locale=2;
+              largerockpathtwo();
+              UpdateDirection();
+              break;
+             case 4:
+              locale=0;
+              startinglocationzero();
+              UpdateDirection();
+              break;
+             case 5:
+              locale=7;
+              cavepathseven();
+              UpdateDirection();
+              break;
+             case 6:
+              locale=5;
+              hutpathfive();
+              UpdateDirection();
+              break;
+             case 9:
+              locale=10;
+              riverpathten();
+              UpdateDirection();
+              break;
+             case 8:
+              locale=9;
+              junglepathnine();
+              UpdateDirection();
+              break;
+           }
+        }
+             
+        function movewest() {
+          switch (locale) {
+            case 0:
+              locale=4;
+              giantholepathfour();
+              UpdateDirection();
+              break;
+             case 5:
+              locale=6;
+              cavepathsix();
+              UpdateDirection();
+              break;
+             case 9:
+              locale=8;
+              cavepatheight();
+              UpdateDirection();
+              break;
+             case 2:
+              locale=0;
+              startinglocationpathzero();
+              UpdateDirection();
+              break;
+             case 7:
+              locale=5;
+              hutpathfive();
+              UpdateDirection();
+              break;
+             case 10:
+              locale=9;
+              junglepathnine();
+              UpdateDirection();    
+              break;
+           }
+        }
+        
+        function movesouth() {
+           switch (locale) {
+             case 0: 
+              locale=3; 
+              brokenbridgepaththree();
+              UpdateDirection();
+              break;
+             case 3: 
+              locale=5;
+              hutpathfive();
+              UpdateDirection();
+              break;
+             case 5: 
+              locale=9;
+              junglepathnine();
+              UpdateDirection();
+              break;
+             case 6: 
+              locale=8;
+              cavepatheight();
+              UpdateDirection();
+              break;
+             case 7:
+              locale=10;
+              riverpathten();
+              UpdateDirection();
+              break;
+             case 1:
+              locale=0;
+              startinglocationzero();
+              UpdateDirection();
+              break;
+           }
+        }
+        
+        function btn_go_click() {
+           var userInput=document.getElementById("theman").value;
+           switch(userInput.toLowerCase()) {     
+             case "n": 
+               movenorth();
+               break;         
+             case "s": 
+               movesouth();
+               break;   
+             case "w": 
+               movewest();
+               break; 
+             case "e": 
+               moveeast();
+             default: 
+               UpdateText("valid commands are (N,S,E,W) directions"); 
+               break;             
+           }                                                        
+        }
+
+		    function UpdateText(msg) {
+			     var nice = document.getElementById("kevin");
+			     nice.value = msg +"\n"+"\n"+ nice.value;
+		    }
+
+       </script>
+     </head>
+   
+    <body Onload="gameinit();">
+      <h1>Kevin Bruce</h1>																							                                                                                           
+      <h2>November 7, 2012</h2>
+      <h3>Introduction to Programming</h3>								
+      <h4>Project 4 - Escape Or Die!!!</h4>
+
+    <textarea  id="kevin" rows="10" cols="40"></textarea> 
+    
+    <img src="images/Map.jpg" alt="Player"/>			
+
+	 <br>
+	 <br>
+	 
+     <input type="text" id="theman">
+     <input type="button"
+        value="go"
+        onclick="btn_go_click();">
+     <br>
+     <br>
+     <input type="button"
+            value="North"
+            id="button_north"
+            onclick="movenorth();">
+            
+     <input type="button"
+            value="West"
+            id="button_west"
+            onclick="movewest();">
+			 
+     <input type="button"
+            value="South"
+            id="button_south"
+            onclick="movesouth();">
+            
+     <input type="button"    
+            value="East"
+            id="button_east"
+            onclick="moveeast();">	
+		 
+     <input type="button"    
+            value="DisplayInventory"
+            onclick="displayInventory();">	
+     <br>
+     <br>
+     <input type="button"
+            value="Score Board"
+            onclick="alert(score);">
+    <p class="bottom">
+      <a href="mailto:Kevin.Bruce1@marist.edu">Email Link</a>
+    <p>
+ 
+    <p>
+     <label>Rate this game:
+        <select name = "rating">
+            <option>Terrible</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+          <option>Awesome</option>
+        </select>
+     </label>   						
+    </p>
+   </body>
+ </html>	
