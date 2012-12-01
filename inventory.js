@@ -1,20 +1,34 @@
 //inventory.js
 
-var playerhasRope = true;
-var playerhasHammer = true;
-var playerhasNails = true;
-var playerhasMatches = true;
-var playerhasJavelinStick = true;
-var playerhasPlanks = true;
-var playerhasTorch = true;
-var playerhasDynamite = true;
-var playerhasHatchet = true;
-var moveCount = 0;
+    function Item (_id , _name , _description, _take) {
 
-function init() {
-   // Call the starting location.
-   location0();
-}
+		   this.id          = _id;
+		   this.name        = _name;
+		   this.description = _description;
+		   this.taken       = _take;
+
+
+	   	this.toString = function () {
+
+		var retVal = "";
+		    retVal = "[Item]"
+		             "Id" + this.id
+		        		 "Name" + this.name
+		         		 "Description" + this.description
+		   return retVal;
+		  }
+		}
+
+var Rope = new Item (0,"Rope" , "10 foot", false);
+var Hammer = new Item (0,"Hammer" , "Rusty", false);
+var Nails = new Item (0,"Nails" , "A box", false);
+var Matches = new Item (0,"Matches" , "A book", false);
+var Javelin = new Item (0,"Javelin" , "A javelin", false);
+var Planks = new Item (0,"Planks" , "Intact", false);
+var Torch = new Item (0,"Torch" , "Old torch", false);
+var Dynamite = new Item (0,"Dynamite" , "4 sticks and a blasting cap", false);
+var Hatchet = new Item (0,"Hatchet" , "small axe", false);
+var moveCount = 0;
 
 function displayInventory() {
    var msg = "Inventory: ";
@@ -41,3 +55,7 @@ function displayInventory() {
    }
    UpdateText(msg);
 }
+
+
+
+

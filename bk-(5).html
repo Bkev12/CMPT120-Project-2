@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+ <html>
+   <!-- Kevin Bruce
+    November 28, 2012
+    Introduction to Programming
+    Project 5 - game v0.8 -->
+   <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <meta name="author" content="Kevin Bruce" />
+      <title>My Game Version 0.2</title>
+     <style>
+       body {background-color:Red;}
+       h1{font-weight:bold; color:Green;}
+     </style>
+     <script type="text/Javascript" src="locations.js"></script>
+     <script type="text/Javascript" src="inventory.js"></script>
+     <script>
+     
+    var currentLocation = 2;
+		var newlocation;
+		var score = 0;
+		 //north
+    var quicksandpath1=true;
+    //East
+    var largerockpath2=true;
+    //South
+    var brokenbridgepath3=true;
+    //West
+    var giantholepath4=true;
+    var hutpath5=true;
+    var cavepath6=true;
+    var cavepath7=true;
+    var cavepath8=true;
+    var junglepath9=true;
+    var riverpath10=true;
+    var btnNorth=document.getElementById("button_north");
+    var btnSouth=document.getElementById("button_south");
+    var btnWest=document.getElementById("button_west");
+    var btnEast=document.getElementById("button_east");
+    var score = 0;
+    var locale = 0;
+		var locations = new Array (12);
+    
+    var inventory = new Array (1);
+        inventory[0] = "Your Current Inventory is";
+
+    var nav = [  //   N0   S1  E2  W3
+            /* 0 */   [1,  3,  2,  4], 
+            /* 1 */   [-1, 0, -1, -1], 
+            /* 2 */   [-1, -1, 0, -1],  
+            /* 3 */   [0,  5, -1, -1], 
+            /* 4 */   [-1,-1, -1,  0], 
+            /* 5 */   [3,  9,  7,  6],
+            /* 6 */   [-1, 8, 5,  -1], 
+            /* 7 */   [-1, 10, -1, 5], 
+            /* 8 */   [6, -1, 9,  -1], 
+            /* 9 */   [5, -1, 10,  8], 
+            /* 10 */  [7, -1, -1,  9] 
+          ];
+
+
+    function displayCurrentLocation() {
+       switch (currentLocation) {
+          case 0 : Startinglocation0(); break;
+          case 1 :    quicksandpath1(); break;
+          case 2 :    largerockpath2(); break;
+          case 3 : brokenbridgepath3(); break;
+          case 4 :    giantholepath4(); break;
+          case 5 :          hutpath5(); break;
+          case 6 :     caveentrance6(); break;
+          case 7 :         cavepath7(); break;
+          case 8 :   heartofthecave8(); break;
+          case 9 :       junglepath9(); break;
+          case 10 :      riverpath10(); break;            
+       }
+     }         
+		 var Location = function(_id, _name, _description, _item) {
+      // Attributes
+    
+      this.id = _id;
+      this.name = _name;
+      this. description = _description;
+      this.item = _item;
+      
+      this.toString = function () {
+      
+		 var retVal = "";
+		     retVal = "[Location]"
+		              "Id" + this.id
+					        "Name" + this.name
+					        "Description" + this.description
+					        "Item" + this.item
+		  return retVal;
+		  }
+		}
+		
+	  function createlocale() {
+	    locale[0]  = new Locale  ("startlocale",    "Player ends up in the jungle",                               "",false);
+		  locale[1]  = new Locale  ("quicksand",      "Player arives at quicksandpath", "Rope, Nails, Hammer, Matches",false);
+	    locale[2]  = new Locale  ("largerock",      "Player arives at largerockpath",                 "JavelinStick",false);
+	    locale[3]  = new Locale  ("brokenbridge",   "Player arives at brokenbridge",                              "",false);
+		  locale[4]  = new Locale  ("gianthole",      "Player arives at gianthole",                   "Planks, Torch", false);
+	    locale[5]  = new Locale  ("hut",            "Player arives at hut",                               "Dynamite",false);
+	    locale[6]  = new Locale  ("caveentrance",   "Player arives at caveentrance ",                             "",false);
+		  locale[7]  = new Locale  ("cavepath",       "Player is on cavepath",                                      "",false);
+		  locale[8]  = new Locale  ("heartofthecave", "Player is inside the cave",                           "Hatchet",false);
+		  locale[9]  = new Locale  ("jungle",         "Player arives back in the jungle",                           "",false);
+		  locale[10] = new Locale  ("river",          "Player arives at river",                                     "",false);
+	  }
+	  function init() {
+      UpdateText("After you were separated from your lads, "+
+                 "you find your self being chased by a psychotic demonized gorilla, "+
+                 "you end up lost in the jungle "+
+                 "with four paths leading in cardinal directions to no where.");
+    }
+                 
+    function asist () {
+		  var msg = "You can type 'N' 'S' 'E' 'W' to move through the game, "+
+		            "or click the buttons, to help you move through the game, "+
+		            "also type i to view your inventory";
+    }
+    // players location update
+	  function updateLocation (loc) {  
+      var ta = document.getElementById("localeupdate");
+          ta.value = loc;
+    }
+    // score update
+	  function updateScore(parascore) { 
+       var ta = document.getElementById("scoreupdate");
+           ta.value = score;
+    }
+    // textarea update
+	  function updateDisplay (msg) { 
+       var ta = document.getElementById("textupdate");
+           ta.value= msg + "\n" + "\n" + ta.value;
+    }
+   
+		function btndisable () {
+     var btnNorth=document.getElementById("button_north");
+     var btnSouth=document.getElementById("button_south");
+     var btnWest=document.getElementById("button_east");
+     var btnEast=document.getElementById("button_west");      
+         updateDisplay(msg);                  
+    }   
+    
+        function UpdateDirection() {
+          switch (locale) {
+            case 0:
+              btnNorth.disabled=false;
+              btnSouth.disabled=false;
+              btnWest.disabled=false;
+              btnEast.disabled=false;
+            case 1:
+              btnNorth.disabled=true;
+              btnSouth.disabled=false;
+              btnWest.disabled=true;
+              btnEast.disabled=true;
+            case 2:
+              btnNorth.disabled=true;
+              btnSouth.disabled=true;
+              btnWest.disabled=false;
+              btnEast.disabled=true;
+            case 3:
+              btnNorth.disabled=false;
+              btnSouth.disabled=false;
+              btnWest.disabled=true;
+              btnEast.disabled=true;
+            case 4:
+              btnNorth.disabled=true;
+              btnSouth.disabled=true;
+              btnWest.disabled=true;
+              btnEast.disabled=false;
+            case 5:
+              btnNorth.disabled=false;
+              btnSouth.disabled=false;
+              btnWest.disabled=false;
+              btnEast.disabled=false;
+            case 6:
+              btnNorth.disabled=true;
+              btnSouth.disabled=false;
+              btnWest.disabled=true;
+              btnEast.disabled=false;
+            case 7:
+              btnNorth.disabled=true;
+              btnSouth.disabled=false;
+              btnWest.disabled=false;
+              btnEast.disabled=true;
+            case 8:
+              btnNorth.disabled=false;
+              btnSouth.disabled=true;
+              btnWest.disabled=true;
+              btnEast.disabled=false;
+            case 9:
+              btnNorth.disabled=false;
+              btnSouth.disabled=true;
+              btnWest.disabled=false;
+              btnEast.disabled=false;
+            case 10:
+              btnNorth.disabled=false;
+              btnSouth.disabled=true;
+              btnWest.disabled=false;
+              btnEast.disabled=true;
+            default:
+              btnNorth.disabled=true;
+              btnSouth.disabled=true;
+              btnWest.disabled=true;
+              btnEast.disabled=true;
+          }
+        }
+            
+          function movenorth() {
+          switch (locale) {
+             case 0:
+              locale=1;
+              quicksandpathone();
+              UpdateDirection();
+              break;
+             case3:
+              locale=0;
+              startinglocationzero();
+              UpdateDirection();
+              break;
+             case 5:
+              locale=3;
+              brokenbridgepaththree();
+              UpdateDirection();
+              break;
+             case 9:
+              locale=5;
+              hutpathfive();
+              UpdateDirection();
+              break;
+             case 8:
+              locale=6;
+              caveentancesix();
+              UpdateDirection();
+              break;
+             case 10:
+              locale=7;
+              cavepathseven();
+              UpdateDirection();
+              break;
+           }
+        }
+         
+        function moveeast() {
+          switch (locale) {
+             case 0:
+              locale=2;
+              largerockpathtwo();
+              UpdateDirection();
+              break;
+             case 4:
+              locale=0;
+              startinglocationzero();
+              UpdateDirection();
+              break;
+             case 5:
+              locale=7;
+              cavepathseven();
+              UpdateDirection();
+              break;
+             case 6:
+              locale=5;
+              hutpathfive();
+              UpdateDirection();
+              break;
+             case 9:
+              locale=10;
+              riverpathten();
+              UpdateDirection();
+              break;
+             case 8:
+              locale=9;
+              junglepathnine();
+              UpdateDirection();
+              break;
+           }
+        }
+             
+        function movewest() {
+          switch (locale) {
+            case 0:
+              locale=4;
+              giantholepathfour();
+              UpdateDirection();
+              break;
+             case 5:
+              locale=6;
+              caveentrancesix();
+              UpdateDirection();
+              break;
+             case 9:
+              locale=8;
+              heartofthecaveeight();
+              UpdateDirection();
+              break;
+             case 2:
+              locale=0;
+              startinglocationpathzero();
+              UpdateDirection();
+              break;
+             case 7:
+              locale=5;
+              hutpathfive();
+              UpdateDirection();
+              break;
+             case 10:
+              locale=9;
+              junglepathnine();
+              UpdateDirection();
+              break;
+           }
+        }
+        
+        function movesouth() {
+           switch (locale) {
+             case 0:
+              locale=3;
+              brokenbridgepaththree();
+              UpdateDirection();
+              break;
+             case 3:
+              locale=5;
+              hutpathfive();
+              UpdateDirection();
+              break;
+             case 5:
+              locale=9;
+              junglepathnine();
+              UpdateDirection();
+              break;
+             case 6:
+              locale=8;
+              heartofthecaveeight();
+              UpdateDirection();
+              break;
+             case 7:
+              locale=10;
+              riverpathten();
+              UpdateDirection();
+              break;
+             case 1:
+              locale=0;
+              startinglocationzero();
+              UpdateDirection();
+              break;
+           }
+        }
+    
+        function btn_go_click() {
+           var userInput=document.getElementById("theman").value;
+           switch(userInput.toLowerCase()) {
+             case "n":
+               movenorth();
+               break;
+             case "s":
+               movesouth();
+               break;
+             case "w":
+               movewest();
+               break;
+             case "e":
+               moveeast();
+             default:
+               UpdateText("valid commands are (N,S,E,W) directions");
+               break;
+           }
+        }
+      function UpdateText(msg) {
+        var nice = document.getElementById("kevin");
+             nice.value = msg +"\n"+"\n"+ nice.value;
+     }
+ 
+       </script>
+     </head>
+   
+     <body Onload = "init();">
+      <h1>Kevin Bruce</h1>	
+      <h2>November 28, 2012</h2>
+      <h3>Introduction to Programming</h3>	
+      <h4>Project 5 - Escape Or Die!!!</h4>
+
+     <textarea id="kevin" rows="10" cols="40"></textarea>
+    
+     <img src="images/Map.jpg" alt="Player"/>	
+
+     <br>
+     <br>
+
+     <input type="text" id="theman">
+     <input type="button"
+        value="go"
+        onclick="btn_go_click();">
+     <br>
+     <br>
+     <input type="button"
+            value="North"
+            id="button_north"
+            onclick="movenorth();">
+
+     <input type="button"
+            value="South"
+            id="button_south"
+            onclick="movesouth();">
+            
+     <input type="button"
+            value="East"
+            id="button_east"
+            onclick="moveeast();">	
+            
+     <input type="button"
+            value="West"
+            id="button_west"
+            onclick="movewest();">
+            <br>
+            <br>
+     <input type="button"
+            value="DisplayInventory"
+            onclick="displayInventory();">	            
+            <br>
+            <br>
+            <input type = "button"
+            value = "Enter Value"
+            onclick = "check();">
+            <input type = "text"
+            id = "txtcmd">
+            <br>
+            <br>
+            Your Current at Location...
+            <input type = "text"
+		        value = "Middle of the jungle"
+            id ="localeupdate">
+            <br>
+            <br>  
+            Your Score is now...
+            <input type = "text"
+            id = "scoreupdate">
+     <p class="bottom">
+     <a href="mailto:Kevin.Bruce1@marist.edu">Email Link</a>
+     <p>
+ 
+     <p>
+     <label>Rate this game:
+        <select name = "rating">
+            <option>Terrible</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+          <option>Awesome</option>
+        </select>
+     </label>
+    </p>
+   </body>
+ </html>	
+		
