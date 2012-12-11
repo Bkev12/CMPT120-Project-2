@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+ <html>
+   <!-- Kevin Bruce
+    December 10, 2012
+    Introduction to Programming
+    Final Project - game v0.8 -->
+   <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <meta name="author" content="Kevin Bruce" />
+      <title>My Game Version 0.2</title>
+     <style>
+       body {background-color:Red;}
+       h1{font-weight:bold; color:Green;}
+     </style>
+     <script type="text/Javascript" src="locations.js"></script>
+     <script type="text/Javascript" src="inventory.js"></script>
+     <script type="text/Javascript" src="navigation.js"></script>
+     <script>
+     
+    var currentLocation = 0;
+		var score = 0;
+		 //north
+    var quicksandpath1=true;
+    //East
+    var largerockpath2=true;
+    //South
+    var brokenbridgepath3=true;
+    //West
+    var giantholepath4=true;
+    var hutpath5=true;
+    var cavepath6=true;
+    var cavepath7=true;
+    var cavepath8=true;
+    var junglepath9=true;
+    var riverpath10=true;
+    var item = new Array();
+		var locations=[];
+    var north =0;
+    var south =1;
+    var east =2;
+    var west =3;
+       
+
+        function btn_go_click() {
+           var userInput=document.getElementById("theman").value;
+           switch(userInput.toLowerCase()) {
+             case "n":
+               move(north);
+               break;
+             case "s":
+               move(south);
+               break;
+             case "w":
+               move(west);
+               break;
+             case "e":
+               move(east);
+               break;
+             default:
+               UpdateText("valid commands are (N,S,E,W) directions");
+               break;
+           }
+        }
+        function move(dir) {
+         var newloc = nav[currentLocation][dir];
+         if (newloc === -1) {
+            updateText("cant go that way");
+         }else {
+            currentLocation = newloc;
+            displayCurrentLocation();
+            }                
+         }
+         
+
+      function updateText(msg) {
+        var nice = document.getElementById("kevin");
+             nice.value = msg +"\n"+"\n"+ nice.value;
+     }
+     function init() {
+      updateText("After you were separated from your lads, "+
+                 "you find your self being chased by a psychotic demonized gorilla, "+
+                 "you end up lost in the jungle "+
+                 "with four paths leading in cardinal directions to no where.");
+      createItem();
+      locations[0]  = new Locale  (0,"startlocale",    "Player ends up in the jungle",                               "",false);
+		  locations[1]  = new Locale  (1,"quicksand",      "Player arives at quicksandpath", "Rope, Nails, Hammer, Matches",false);
+	    locations[2]  = new Locale  (2,"largerock",      "Player arives at largerockpath",                 "JavelinStick",false);
+	    locations[3]  = new Locale  (3,"brokenbridge",   "Player arives at brokenbridge",                              "",false);
+		  locations[4]  = new Locale  (4,"gianthole",      "Player arives at gianthole",                   "Planks, Torch", false);
+	    locations[5]  = new Locale  (5,"hut",            "Player arives at hut",                               "Dynamite",false);
+	    locations[6]  = new Locale  (6,"caveentrance",   "Player arives at caveentrance ",                             "",false);
+		  locations[7]  = new Locale  (7,"cavepath",       "Player is on cavepath",                                      "",false);
+		  locations[8]  = new Locale  (8,"heartofthecave", "Player is inside the cave",                           "Hatchet",false);
+		  locations[9]  = new Locale  (9,"jungle",         "Player arives back in the jungle",                           "",false);
+		  locations[10] = new Locale  (10,"river",          "Player arives at river",                                     "",false);
+     
+      }
+      
+       </script>
+     </head>
+   
+     <body Onload = "init();">
+      <h1>Kevin Bruce</h1>	
+      <h2>December 10 , 2012</h2>
+      <h3>Introduction to Programming</h3>	
+      <h4>Final Project - Escape Or Die!!!</h4>
+
+     <textarea id="kevin" rows="10" cols="40"></textarea>
+    
+     <img src="images/Map.jpg" alt="Player"/>	
+
+     <br>
+     <br>
+
+     <input type="text" id="theman">
+     <input type="button"
+        value="go"
+        onclick="btn_go_click();">
+     <br>
+     <br>
+     <input type="button"
+            value="North"
+            id="btn_north"
+            onclick="move(north);">
+
+     <input type="button"
+            value="South"
+            id="btn_south"
+            onclick="move(south);">
+            
+     <input type="button"
+            value="East"
+            id="btn_east"
+            onclick="move(east);">	
+            
+     <input type="button"
+            value="West"
+            id="btn_west"
+            onclick="move(west);">
+            <br>
+            <br>
+     <input type="button"
+            value="DisplayInventory"
+            onclick="displayInventory();">	            
+            <br>
+            <br>
+     <input type="button"
+            value="Score"
+            onclick="Score;">
+            
+     <input type="button"
+            value="help"
+            onclick="assit;">            
+     <p class="bottom">
+     <a href="mailto:Kevin.Bruce1@marist.edu">Email Link</a>
+     <p>
+ 
+     <p>
+     <label>Rate this game:
+        <select name = "rating">
+            <option>Terrible</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+          <option>Awesome</option>
+        </select>
+     </label>
+    </p>
+   </body>
+ </html>	
+		
